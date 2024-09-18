@@ -1,10 +1,9 @@
-package shop.project.person;
-
+package shop.project.shops;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "person")
-public class Person {
+@Table(name = "shop")
+public class Shop {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)  
     @Column(name = "id", nullable = false)  
@@ -13,8 +12,8 @@ public class Person {
     @Column(name = "name", nullable = false)
     private String name;
 
-    public Person() {}
-    public Person(String name) {
+    public Shop(){}
+    public Shop(String name) {
         this.name = name;
     }
 
@@ -25,7 +24,7 @@ public class Person {
     public String getName() {
         return this.name;
     }
-
+    
     public void setName(String name) {
         this.name = name;
     }
