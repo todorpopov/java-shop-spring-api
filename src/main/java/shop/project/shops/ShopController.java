@@ -1,13 +1,11 @@
 package shop.project.shops;
 
 import java.util.ArrayList;
-import java.util.Map;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import shop.project.exceptions.NoShopNameFound;
-import shop.project.forms.CreateShopForm;
 
 @RestController
 @RequestMapping("api/shops")
@@ -19,21 +17,27 @@ public class ShopController {
     }
 
     @PostMapping(value = "/new-shop")
-    public ResponseEntity<String> createShop(@RequestBody Map<String, CreateShopForm> body) throws NoShopNameFound {
-        CreateShopForm shopForm = body.get("name");
-        
-        if(shopForm.getName() == "") {
-            throw new NoShopNameFound("No shop name found in the request body!");
+    public ResponseEntity<String> createShop(@RequestBody CreateShopDTO body) {
+        try {
+            this.shopService.createShop(body.getName());
+            return ResponseEntity.ok("New shop created successfully!");
+        } catch(NoShopNameFound exception) {
+            return ResponseEntity.badRequest().body(exception.getMessage());
         }
-
-        System.out.println(shopForm.getName());
-
-        this.shopService.createShop(shopForm.getName());
-        return ResponseEntity.ok("New shop created successfully!");
     }
 
     @GetMapping("/get/all")
     public ArrayList<ShopDTO> getAllShops() {
         return this.shopService.getAll();
+    }
+
+    @DeleteMapping("/delete/all")
+    public ResponseEntity<String> deleteAll() {
+        try {
+            this.shopService.deleteAll();
+            return ResponseEntity.ok().body("All shops deleted successfully");
+        } catch(Exception exception) {
+            return ResponseEntity.internalServerError().body(exception.getMessage());
+        }
     }
 }

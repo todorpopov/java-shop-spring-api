@@ -1,7 +1,7 @@
 package shop.project.exceptions;
 
-public class NoShopNameFound extends Exception {
-    public NoShopNameFound(String message) {
-        super(message);
+public class NoShopNameFound extends RuntimeException {
+    public NoShopNameFound() {
+        super("No shop name found in the request body!");
     }   
 }
