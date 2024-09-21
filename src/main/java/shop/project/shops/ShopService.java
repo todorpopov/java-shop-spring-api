@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import org.springframework.stereotype.Service;
 
 import shop.project.exceptions.NoShopNameFound;
+import shop.project.shops.dtos.Mapper;
+import shop.project.shops.dtos.ShopDTO;
 
 @Service
 public class ShopService {

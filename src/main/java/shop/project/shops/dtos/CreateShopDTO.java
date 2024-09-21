@@ -1,4 +1,4 @@
-package shop.project.shops;
+package shop.project.shops.dtos;
 
 import java.util.Map;
 

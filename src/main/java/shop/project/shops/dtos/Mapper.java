@@ -1,4 +1,6 @@
-package shop.project.shops;
+package shop.project.shops.dtos;
+
+import shop.project.shops.Shop;
 
 public class Mapper {
     public static ShopDTO toDTO(Shop Shop) {

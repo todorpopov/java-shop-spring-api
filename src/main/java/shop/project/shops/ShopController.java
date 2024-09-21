@@ -6,6 +6,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import shop.project.exceptions.NoShopNameFound;
+import shop.project.shops.dtos.CreateShopDTO;
+import shop.project.shops.dtos.ShopDTO;
 
 @RestController
 @RequestMapping("api/shops")
