@@ -1,6 +1,7 @@
 package shop.project.shops;
 
 import java.util.ArrayList;
+import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
@@ -43,6 +44,16 @@ public class ShopService {
         });
 
         return shopDtosList;
+    }
+
+    public ShopDTO getOneById(Long id) {
+        Optional<Shop> shop = this.shopRepository.findById(id);
+
+        if(shop.isPresent()) {
+            return Mapper.toDTO(shop.get());
+        } else {
+            return null;
+        }
     }
     
     public void deleteAll() {

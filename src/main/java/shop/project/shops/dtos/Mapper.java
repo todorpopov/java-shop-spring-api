@@ -3,8 +3,8 @@ package shop.project.shops.dtos;
 import shop.project.shops.Shop;
 
 public class Mapper {
-    public static ShopDTO toDTO(Shop Shop) {
-        ShopDTO shopDTO = new ShopDTO(Shop.getId(), Shop.getName());
+    public static ShopDTO toDTO(Shop shop) {
+        ShopDTO shopDTO = new ShopDTO(shop.getId(), shop.getName());
         return shopDTO;
     }
 

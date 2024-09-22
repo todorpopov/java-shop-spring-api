@@ -2,6 +2,7 @@ package shop.project.shops;
 
 import java.util.ArrayList;
 
+import org.springframework.data.repository.query.Param;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,7 +19,7 @@ public class ShopController {
         this.shopService = shopService;
     }
 
-    @PostMapping(value = "/new-shop")
+    @PostMapping(value = "/create")
     public ResponseEntity<String> createShop(@RequestBody CreateShopDTO body) {
         try {
             this.shopService.createShop(body.getName());
@@ -28,9 +29,19 @@ public class ShopController {
         }
     }
 
-    @GetMapping("/get/all")
+    @GetMapping("")
     public ArrayList<ShopDTO> getAllShops() {
         return this.shopService.getAll();
+    }
+
+    @GetMapping("/get")
+    public ResponseEntity<ShopDTO> getAllShops(@RequestParam String id) {
+        try {
+            ShopDTO shopDto = this.shopService.getOneById(Long.parseLong(id));
+            return ResponseEntity.ok().body(shopDto);
+        } catch(NumberFormatException exception) {
+            return ResponseEntity.badRequest().body(null);
+        }
     }
 
     @DeleteMapping("/delete/all")
